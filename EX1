@@ -55,3 +55,43 @@ public class file2 {
 	}
 
 }
+
+///////////////////////////////////////////////
+
+package Ex1;
+import java.io.*;
+public class file3 {
+
+	public static void main(String args[]) throws FileNotFoundException
+	{
+		String f1 = "C:/Users/student.PSSL-64/Documents/newonw.txt";
+        String del = "john";
+
+        try {
+         
+            StringBuilder sb = new StringBuilder();
+            try (BufferedReader br = new BufferedReader(new FileReader(f1))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                    sb.append("\n");
+                }
+            }
+            String mod = sb.toString().replaceAll("\\b" + del + "\\b\\s*", "");
+
+            
+            try (FileWriter fw = new FileWriter(f1)) {
+                fw.write(mod);
+            }
+
+            System.out.println("deleted");
+
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+		
+	}
+
+
+
