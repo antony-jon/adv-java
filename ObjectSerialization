@@ -1,0 +1,74 @@
+package lab_ex;
+import java.io.*;
+public class ex implements Serializable{
+	//private static int rollno;
+	private int rollno;
+	private String name;
+	//transient int mark;
+	private int mark;
+	public ex(int rollno,String name , int mark) {
+		super();
+		this.rollno=rollno;
+		this.name=name;
+		this.mark=mark;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setMark(int mark) {
+		this.mark = mark;
+	}
+	public int getMark() {
+		return mark;
+	}
+
+	public int getRollno() {
+		return rollno;
+	}
+	
+	public String toString() {
+		return "ex1 [rollno="+rollno+",name=" + name + ", mark=" + mark + "]";
+	}
+	
+
+}
+
+
+////////////////////////////////////////////////////////////////////////
+
+
+package lab_ex;
+import java.io.*;
+public class ObjSerial {
+	public static void main(String args[])throws IOException, ClassNotFoundException {
+try {
+	FileOutputStream fout= new FileOutputStream("C:/Users/exam22/Desktop/jack101.txt");
+	ObjectOutputStream objout = new ObjectOutputStream(fout);
+	ex e1=new ex(704,"john",77);
+	ex e2= new ex(104,"antony",91);
+	objout.writeObject(e1);
+	objout.writeObject(e2);
+	objout.close();
+	fout.close();
+	FileInputStream fin=new FileInputStream("C:/Users/exam22/Desktop/jack101.txt");
+	ObjectInputStream objin= new ObjectInputStream(fin);
+	ex e3=(ex)objin.readObject();
+	System.out.println(e3);
+	ex e4=(ex)objin.readObject();
+	System.out.println(e4);
+	objin.close();
+	
+}
+catch(Exception e)
+{
+	System.out.println(e);
+}
+System.out.println("Antony John Paul.A 717822E104");
+}
+	}
+
+
